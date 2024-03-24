@@ -1,4 +1,6 @@
 import esbuild from 'esbuild';
+import fs from 'fs';
+import path from 'path';
 
 const DEV_BUILD_PATH = './dist/dev';
 const PROD_BUILD_PATH = './dist/prod';
@@ -17,6 +19,25 @@ const buildSettings = {
   treeShaking: true,
   target: production ? 'es2017' : 'esnext',
 };
+
+// Function to recursively delete directory contents
+const deleteDirectoryContents = (dirPath) => {
+  if (fs.existsSync(dirPath)) {
+    fs.readdirSync(dirPath).forEach((file) => {
+      const currentPath = path.join(dirPath, file);
+      if (fs.lstatSync(currentPath).isDirectory()) {
+        // Recurse if the current path is a directory
+        deleteDirectoryContents(currentPath);
+      } else {
+        // Delete file
+        fs.unlinkSync(currentPath);
+      }
+    });
+  }
+};
+
+// Clean the build directory before starting the build
+deleteDirectoryContents(BUILD_DIRECTORY);
 
 if (!production) {
   let ctx = await esbuild.context(buildSettings);
