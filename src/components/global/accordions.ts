@@ -28,7 +28,7 @@ export function animatedDetailsAccordions() {
     const animationTimeline = window.gsap.timeline({
       onComplete: () => {
         if (SHOULD_CLOSE_ACCORDION && accordion.open) {
-          window.DEBUG('accordion close');
+          window.DEBUG('accordion close', accordion);
           accordion.open = false;
         }
       },
@@ -42,10 +42,17 @@ export function animatedDetailsAccordions() {
       let height: number | string = 0;
 
       if (!accordion.open) {
-        window.DEBUG('accordion open');
+        window.DEBUG('accordion open', accordion);
         accordion.open = true;
         height = 'auto';
         SHOULD_CLOSE_ACCORDION = false;
+
+        // Close all other open accordions
+        accordionsList.forEach((otherAccordion) => {
+          if (otherAccordion !== accordion && otherAccordion.open) {
+            (otherAccordion.firstElementChild as HTMLElement).click();
+          }
+        });
       } else {
         height = 0;
       }
