@@ -1,3 +1,4 @@
+import { initHeroSlider } from 'src/components/home/hero-slider';
 import { initProductTabsAutoplay } from 'src/components/home/product-tabs';
 import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 
@@ -9,4 +10,6 @@ window.fsAttributes.push([
   },
 ]);
 
-window.addEventListener(SCRIPTS_LOADED_EVENT, () => {});
+window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
+  initHeroSlider();
+});
