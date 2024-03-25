@@ -54,7 +54,7 @@ function fadeUpAnimation(
     delay: delay || 0,
     scrollTrigger: {
       trigger: parentEl || el,
-      start: 'top 85%',
+      start: 'top 90%',
       toggleActions: 'play none none none',
     },
   });
