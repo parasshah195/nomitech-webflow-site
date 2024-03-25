@@ -12,7 +12,7 @@ export function initNav() {
   }
 
   toggleNavColors();
-  toggleNavVisibility();
+  // toggleNavVisibilityOnScroll();
 }
 
 function toggleNavColors() {
@@ -43,7 +43,7 @@ function toggleNavColors() {
 /**
  * Hide when scrolling down, show when scrolling up
  */
-function toggleNavVisibility() {
+function toggleNavVisibilityOnScroll() {
   let lastDirection: number;
 
   window.gsap.to(componentEl, {
