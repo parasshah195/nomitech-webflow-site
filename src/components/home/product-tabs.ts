@@ -1,5 +1,3 @@
-import { CURRENT_CSS_CLASS } from '@finsweet/ts-utils';
-
 const AUTOPLAY_TIMER_MS = 5000;
 const TABS_LIST_SELECTOR = '.home-products_tabs-wrapper';
 const TAB_CLASS = 'home-products_tab-link';
