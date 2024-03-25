@@ -19,12 +19,12 @@ function toggleNavColors() {
   const defaultTheme = componentEl?.getAttribute(THEME_ATTR) || 'light';
   const altTheme = defaultTheme === 'light' ? 'dark' : defaultTheme;
 
-  // when nav is beyond 50px from top of page, add class to change colors. Use GSAP scrolltrigger
+  // when nav is beyond 50px from top of page, add class to change light theme and stick at the top
   window.gsap.to(componentEl, {
     scrollTrigger: {
-      trigger: componentEl,
-      start: 'bottom 15vh',
-      end: 'bottom 15vh',
+      trigger: document.body,
+      start: '50px top', // when body scrolls past 50px from top
+      end: '+=0',
       markers: window.IS_DEBUG_MODE,
       id: 'nav-scroll',
       toggleClass: COMPONENT_SCROLLED_COMBO_CLASS,
