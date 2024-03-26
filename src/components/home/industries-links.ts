@@ -1,4 +1,4 @@
-const EL_ID_DATA_ATTRIBUTE = 'data-home-industries-el';
+const EL_DATA_ATTRIBUTE = 'data-home-industries-el';
 const ATTR_VALUE_IMAGE = 'image-item';
 const ATTR_VALUE_LINK = 'link';
 
@@ -13,8 +13,8 @@ let cursorMoveLastKnownPosition = { x: 0, y: 0 };
 let cursorMoveTicking = false;
 
 export function initHomeIndustriesLinks() {
-  const imageList = document.querySelectorAll(`[${EL_ID_DATA_ATTRIBUTE}="${ATTR_VALUE_IMAGE}"]`);
-  const linksList = document.querySelectorAll(`[${EL_ID_DATA_ATTRIBUTE}="${ATTR_VALUE_LINK}"]`);
+  const imageList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_IMAGE}"]`);
+  const linksList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_LINK}"]`);
   let isCursorAvailable = true;
 
   if (!imageList.length || !linksList.length) {
