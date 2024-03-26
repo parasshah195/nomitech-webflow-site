@@ -58,7 +58,7 @@ function setAutoplayInterval() {
 
 function clearAutoplayInterval() {
   if (interval) {
-    window.DEBUG('Clearing interval', { interval });
+    // window.DEBUG('Clearing interval', { interval });
     clearInterval(interval);
     interval = undefined;
   }
