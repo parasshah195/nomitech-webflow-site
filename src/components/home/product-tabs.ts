@@ -1,4 +1,4 @@
-const TABLET_BREAKPOINT = 768;
+import { MOBILE_LANDSCAPE_START_BREAKPOINT } from 'src/constants';
 
 const AUTOPLAY_TIMER_MS = 5000;
 const TABS_LIST_SELECTOR = '.home-products_tabs-wrapper';
@@ -12,7 +12,7 @@ let tabEls: NodeListOf<HTMLElement>;
 let tabCount: number;
 
 export function initProductTabsAutoplay() {
-  if (window.innerWidth < TABLET_BREAKPOINT) {
+  if (window.innerWidth <= MOBILE_LANDSCAPE_START_BREAKPOINT) {
     return;
   }
 
@@ -69,7 +69,7 @@ function clearAutoplayInterval() {
  */
 export function setTabsResizeListener() {
   window.Webflow?.resize.on(() => {
-    if (window.innerWidth < TABLET_BREAKPOINT) {
+    if (window.innerWidth <= MOBILE_LANDSCAPE_START_BREAKPOINT) {
       if (interval) {
         window.DEBUG('screen smaller than tablet, clear interval', { interval });
         clearAutoplayInterval();
