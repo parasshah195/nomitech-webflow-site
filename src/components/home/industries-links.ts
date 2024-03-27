@@ -12,9 +12,10 @@ const customCursorEl = document.querySelector(CUSTOM_CURSOR_SELECTOR);
 let cursorMoveLastKnownPosition = { x: 0, y: 0 };
 let cursorMoveTicking = false;
 
+const imageList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_IMAGE}"]`);
+const linksList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_LINK}"]`);
+
 export function initHomeIndustriesLinks() {
-  const imageList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_IMAGE}"]`);
-  const linksList = document.querySelectorAll(`[${EL_DATA_ATTRIBUTE}="${ATTR_VALUE_LINK}"]`);
   let isCursorAvailable = true;
 
   if (!imageList.length || !linksList.length) {
@@ -35,30 +36,37 @@ export function initHomeIndustriesLinks() {
 
   // On links hover, show the corresponding image, and hide the existing one
   linksList.forEach((linkEl, position) => {
-    linkEl.addEventListener('mouseenter', () => {
-      window.DEBUG(`Industry link hover. Item ${position + 1}`);
+    linkEl.addEventListener('mouseenter', (ev) => linkHoverIn(ev, position, isCursorAvailable));
+    linkEl.addEventListener('focus', (ev) => linkHoverIn(ev, position, isCursorAvailable));
 
-      imageList.forEach((imageEl) => {
-        imageEl.classList.remove(ACTIVE_CLASS);
-      });
-      imageList[position].classList.add(ACTIVE_CLASS);
-
-      customCursorEl.classList.add(ACTIVE_CLASS);
-
-      if (isCursorAvailable) {
-        window.addEventListener('mousemove', cursorMove);
-      }
-    });
-
-    linkEl.addEventListener('mouseleave', () => {
-      window.DEBUG(`Industry link hover out. Item ${position + 1}`);
-
-      customCursorEl.classList.remove(ACTIVE_CLASS);
-      if (isCursorAvailable) {
-        window.removeEventListener('mousemove', cursorMove);
-      }
-    });
+    linkEl.addEventListener('mouseleave', (ev) => linkHoverOut(ev, position, isCursorAvailable));
   });
+}
+
+function linkHoverIn(ev: MouseEvent | Event, position: number, isCursorAvailable: boolean) {
+  window.DEBUG(`Industry link hover. Item ${position + 1}`);
+
+  imageList.forEach((imageEl) => {
+    imageEl.classList.remove(ACTIVE_CLASS);
+  });
+  imageList[position].classList.add(ACTIVE_CLASS);
+
+  if (ev.type === 'mouseenter') {
+    customCursorEl?.classList.add(ACTIVE_CLASS);
+
+    if (isCursorAvailable) {
+      window.addEventListener('mousemove', cursorMove);
+    }
+  }
+}
+
+function linkHoverOut(ev: MouseEvent, position: number, isCursorAvailable: boolean) {
+  window.DEBUG(`Industry link hover out. Item ${position + 1}`);
+
+  customCursorEl?.classList.remove(ACTIVE_CLASS);
+  if (isCursorAvailable) {
+    window.removeEventListener('mousemove', cursorMove);
+  }
 }
 
 function cursorMove(ev: MouseEvent) {
