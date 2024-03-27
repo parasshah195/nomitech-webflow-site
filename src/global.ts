@@ -14,10 +14,16 @@ window.Webflow?.push(() => {
   initNav();
   animatedDetailsAccordions();
   fadeUp();
+  setFooterCurrentYear();
 });
 
 function setFadeUpOnBentoGrid() {
   document.querySelectorAll('.bento-grid_component').forEach((item) => {
     item.setAttribute('data-fade-up', 'stagger');
   });
+}
+
+function setFooterCurrentYear() {
+  const year = new Date().getFullYear();
+  document.querySelector('.footer_current-year')!.textContent = year.toString();
 }
