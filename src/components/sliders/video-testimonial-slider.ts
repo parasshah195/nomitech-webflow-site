@@ -1,3 +1,4 @@
+import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 import Swiper from 'swiper';
 import { Navigation, EffectFade, Pagination, Controller } from 'swiper/modules';
 
@@ -12,8 +13,8 @@ import {
   NAV_DISABLED_CLASSNAME,
 } from './constants';
 
-export function initVideoTestimonialSlider() {
-  const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="video"]`;
+function initVideoTestimonialSlider() {
+  const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="video-testimonial"]`;
 
   document.querySelectorAll(COMPONENT_SELECTOR).forEach((componentEl) => initSlider(componentEl));
 }
@@ -71,3 +72,7 @@ function initSlider(componentEl: HTMLElement) {
 
   textSliderInstance.controller.control = videoSliderInstance;
 }
+
+window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
+  initVideoTestimonialSlider();
+});

@@ -1,3 +1,4 @@
+import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 import Swiper from 'swiper';
 import { Navigation, EffectFade, Pagination } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types/swiper-options';
@@ -13,11 +14,13 @@ import {
   PAGINATION_BULLET_CLASSNAME,
   NAV_DISABLED_CLASSNAME,
   GAP_DATA_ATTR,
+  SLIDE_COUNTER_CURRENT_VALUE,
+  SLIDE_COUNTER_TOTAL_VALUE,
 } from './constants';
 
 const sliderModules = [Navigation, Pagination];
 
-export function initGeneralSlider() {
+function initGeneralSlider() {
   const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="general"]`;
 
   document.querySelectorAll(COMPONENT_SELECTOR).forEach((componentEl) => initSlider(componentEl));
@@ -35,6 +38,13 @@ function initSlider(componentEl: HTMLElement) {
   const navNextEl = componentEl.querySelector(`[${El_COMMON_DATA_ATTR}="${NAV_NEXT_ATTR_VALUE}"]`);
   const paginationEl = componentEl.querySelector(
     `[${El_COMMON_DATA_ATTR}="${PAGINATION_ATTR_VALUE}"]`
+  );
+
+  const currentSlideCountEl = componentEl.querySelectorAll(
+    `[${El_COMMON_DATA_ATTR}="${SLIDE_COUNTER_CURRENT_VALUE}"]`
+  );
+  const totalSlidesCountEl = componentEl.querySelectorAll(
+    `[${El_COMMON_DATA_ATTR}="${SLIDE_COUNTER_TOTAL_VALUE}"]`
   );
 
   const effect = componentEl.getAttribute(EFFECT_DATA_ATTR) || 'slide';
@@ -69,5 +79,25 @@ function initSlider(componentEl: HTMLElement) {
     };
   }
 
+  if (currentSlideCountEl && totalSlidesCountEl) {
+    sliderOptions.on = {
+      init: function () {
+        totalSlidesCountEl.forEach((el) => updateCount(el, this.slides.length));
+        currentSlideCountEl.forEach((el) => updateCount(el, this.realIndex + 1));
+      },
+      slideChange: function () {
+        currentSlideCountEl.forEach((el) => updateCount(el, this.realIndex + 1));
+      },
+    };
+  }
+
   new Swiper(sliderEl, sliderOptions);
+}
+
+window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
+  initGeneralSlider();
+});
+
+function updateCount(el: HTMLElement, count: number) {
+  el.textContent = count.toString();
 }
