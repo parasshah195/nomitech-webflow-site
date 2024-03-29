@@ -1,3 +1,4 @@
+import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 import Swiper from 'swiper';
 import { Navigation, EffectFade, Pagination } from 'swiper/modules';
 import type { SwiperOptions } from 'swiper/types/swiper-options';
@@ -17,7 +18,7 @@ import {
 
 const sliderModules = [Navigation, Pagination];
 
-export function initGeneralSlider() {
+function initGeneralSlider() {
   const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="general"]`;
 
   document.querySelectorAll(COMPONENT_SELECTOR).forEach((componentEl) => initSlider(componentEl));
@@ -71,3 +72,7 @@ function initSlider(componentEl: HTMLElement) {
 
   new Swiper(sliderEl, sliderOptions);
 }
+
+window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
+  initGeneralSlider();
+});
