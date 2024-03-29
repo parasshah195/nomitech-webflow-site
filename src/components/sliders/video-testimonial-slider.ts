@@ -14,7 +14,7 @@ import {
 } from './constants';
 
 function initVideoTestimonialSlider() {
-  const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="video"]`;
+  const COMPONENT_SELECTOR = `[${SECTION_DATA_ATTR}="video-testimonial"]`;
 
   document.querySelectorAll(COMPONENT_SELECTOR).forEach((componentEl) => initSlider(componentEl));
 }
