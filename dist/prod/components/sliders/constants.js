@@ -1,1 +1,1 @@
-"use strict";(()=>{var A="data-slider-section",t="data-slider-effect",T="data-slider-el",e="data-slider-gap",_="nav-prev",o="nav-next",n="is-disabled",s="pagination",a="slider-nav_pagination-bullet",E="is-active";})();
+"use strict";(()=>{var t="data-slider-section",A="data-slider-effect",T="data-slider-el",o="data-slider-gap",_="nav-prev",e="nav-next",n="is-disabled",s="pagination",E="slider-nav_pagination-bullet",r="is-active",a="total-slides-count",N="current-slide-count";})();
