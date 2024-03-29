@@ -61,7 +61,7 @@ function initSlider(componentEl: HTMLElement) {
   });
 
   const videoSliderInstance = new Swiper(videoSliderEl, {
-    modules: [EffectFade],
+    modules: [EffectFade, Controller],
     effect: 'fade',
     fadeEffect: {
       crossFade: true,
@@ -71,6 +71,7 @@ function initSlider(componentEl: HTMLElement) {
   });
 
   textSliderInstance.controller.control = videoSliderInstance;
+  videoSliderInstance.controller.control = textSliderInstance;
 }
 
 window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
