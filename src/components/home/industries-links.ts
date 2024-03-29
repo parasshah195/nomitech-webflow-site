@@ -1,4 +1,4 @@
-import { setCustomCursor } from '../global/custom-hover-cursor';
+import { setCustomCursor } from '../custom-hover-cursor';
 
 const EL_DATA_ATTRIBUTE = 'data-home-industries-el';
 const ATTR_VALUE_IMAGE = 'image-item';
