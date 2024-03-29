@@ -13,3 +13,7 @@ export const NAV_DISABLED_CLASSNAME = 'is-disabled';
 export const PAGINATION_ATTR_VALUE = 'pagination';
 export const PAGINATION_BULLET_CLASSNAME = 'slider-nav_pagination-bullet';
 export const PAGINATION_ACTIVE_CLASSNAME = 'is-active';
+
+// Slide count
+export const SLIDE_COUNTER_TOTAL_VALUE = 'total-slides-count';
+export const SLIDE_COUNTER_CURRENT_VALUE = 'current-slide-count';
