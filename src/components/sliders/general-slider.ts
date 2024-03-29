@@ -49,7 +49,7 @@ function initSlider(componentEl: HTMLElement) {
     effect: effect,
     loop: false,
     slidesPerView: 'auto',
-    spaceBetween: parseInt(gap, 10),
+    spaceBetween: parseInt(gap),
     navigation: {
       prevEl: navPrevEl,
       nextEl: navNextEl,
