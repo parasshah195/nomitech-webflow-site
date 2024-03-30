@@ -52,7 +52,7 @@ function appendScripts() {
   });
 
   Promise.allSettled(SCRIPT_LOAD_PROMISES).then(() => {
-    window.DEBUG('All scripts loaded');
+    window.DEBUG('All Custom JS scripts are loaded');
     window.dispatchEvent(new CustomEvent(SCRIPTS_LOADED_EVENT));
   });
 }
