@@ -5,7 +5,9 @@
  */
 import { SCRIPTS_LOADED_EVENT } from './constants';
 import './dev/debug';
+import { ENV_NAMES } from './dev/env';
 import './dev/env';
+import { outputEnvSwitchLog } from './dev/env';
 
 const LOCALHOST_BASE = 'http://localhost:3000/';
 const PRODUCTION_BASE = 'https://cdn.jsdelivr.net/gh/parasshah195/nomitech-webflow-site/dist/prod/';
@@ -21,7 +23,8 @@ window.addEventListener('DOMContentLoaded', addJS);
  * Sets an object `window.isLocal` and adds all the set scripts using the `window.JS_SCRIPTS` Set
  */
 function addJS() {
-  console.log(`Current mode: ${window.SCRIPTS_ENV}`);
+  console.log(`Current mode: ${ENV_NAMES[window.SCRIPTS_ENV]}`);
+  outputEnvSwitchLog(window.SCRIPTS_ENV);
 
   if (window.SCRIPTS_ENV === 'dev') {
     fetchLocalScripts();
