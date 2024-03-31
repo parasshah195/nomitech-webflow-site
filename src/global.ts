@@ -9,7 +9,7 @@ window.gsap = gsap;
 window.gsap.registerPlugin(ScrollTrigger);
 
 window.Webflow?.push(() => {
-  setFadeUpOnBentoGrid();
+  staggerFadeUpGlobalElements();
 
   initNav();
   animatedDetailsAccordions();
@@ -17,8 +17,9 @@ window.Webflow?.push(() => {
   setFooterCurrentYear();
 });
 
-function setFadeUpOnBentoGrid() {
-  document.querySelectorAll('.bento-grid_component').forEach((item) => {
+function staggerFadeUpGlobalElements() {
+  const selectorsList = '.bento-grid_component, .faq_accordion_list';
+  document.querySelectorAll(selectorsList).forEach((item) => {
     item.setAttribute('data-fade-up', 'stagger');
   });
 }
