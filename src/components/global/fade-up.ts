@@ -5,6 +5,8 @@ const FADE_UP_ATTR_STAGGER_VALUE = 'stagger';
 const FADE_UP_DELAY_ATTR = 'data-fade-up-delay-ms';
 const FADE_UP_STAGGER_DELAY_ATTR = 'data-fade-up-stagger-delay-ms';
 
+const FADE_UP_DEFAULT_STAGGER_DELAY_MS = 150;
+
 /**
  * Adds fade up animation (fade and slide up) to elements that have the `data-fade-up` attribute.
  *
@@ -36,9 +38,8 @@ function fadeUpAnimation(
   delay: false | number = false
 ) {
   const staggerDelayValue =
-    (Number(parentEl?.getAttribute(FADE_UP_STAGGER_DELAY_ATTR)) || 300) / 1000;
-
-  window.DEBUG({ el, parentEl, stagger, delay, staggerDelayValue });
+    (Number(parentEl?.getAttribute(FADE_UP_STAGGER_DELAY_ATTR)) ||
+      FADE_UP_DEFAULT_STAGGER_DELAY_MS) / 1000;
 
   window.gsap.set(el, {
     y: SLIDE_Y_VALUE,
