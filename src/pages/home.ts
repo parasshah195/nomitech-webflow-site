@@ -13,7 +13,9 @@ window.fsAttributes.push([
     initProductTabsAutoplay();
     setTabsResizeListener();
 
-    window.ScrollTrigger.refresh();
+    setTimeout(() => {
+      window.ScrollTrigger.refresh();
+    }, 500);
   },
 ]);
 
