@@ -12,6 +12,8 @@ window.fsAttributes.push([
   () => {
     initProductTabsAutoplay();
     setTabsResizeListener();
+
+    window.ScrollTrigger.refresh();
   },
 ]);
 
