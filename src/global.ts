@@ -8,6 +8,7 @@ import { SCRIPTS_LOADED_EVENT } from './constants';
 
 window.gsap = gsap;
 window.gsap.registerPlugin(ScrollTrigger);
+window.ScrollTrigger = ScrollTrigger;
 
 window.Webflow?.push(() => {
   staggerFadeUpGlobalElements();
@@ -19,7 +20,7 @@ window.Webflow?.push(() => {
 });
 
 window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
-  ScrollTrigger.refresh();
+  window.ScrollTrigger.refresh();
 });
 
 function staggerFadeUpGlobalElements() {
