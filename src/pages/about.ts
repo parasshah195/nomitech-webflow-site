@@ -1,8 +1,32 @@
+import { COMPONENT_SELECTOR, THEME_ATTR } from 'src/components/global/nav-constants';
 import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 
+const navComponentEl = document.querySelector(COMPONENT_SELECTOR);
+
 window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
+  updateResponsiveNav();
   aboutGlobeParallaxOnScroll();
 });
+
+function updateResponsiveNav() {
+  if (window.innerWidth < 768) {
+    switchNavTheme('light');
+  }
+
+  const mediaQueryList = window.matchMedia('(min-width: 768px)');
+  mediaQueryList.addEventListener('change', (e) => {
+    if (e.matches) {
+      switchNavTheme('dark');
+    } else {
+      switchNavTheme('light');
+    }
+  });
+}
+
+function switchNavTheme(theme = 'dark') {
+  window.DEBUG(`set ${theme} theme`);
+  navComponentEl?.setAttribute(THEME_ATTR, theme);
+}
 
 function aboutGlobeParallaxOnScroll() {
   const COMMON_DATA_ATTR = 'data-about-globe-el';

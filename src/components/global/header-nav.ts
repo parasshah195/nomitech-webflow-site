@@ -1,4 +1,5 @@
-const COMPONENT_SELECTOR = '.nav_component';
+import { COMPONENT_SELECTOR } from './nav-constants';
+
 const COMPONENT_SCROLLED_COMBO_CLASS = 'is-scrolled';
 const COMPONENT_SCROLLED_HIDE_COMBO_CLASS = 'is-hidden';
 const THEME_ATTR = 'data-theme';
