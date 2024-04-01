@@ -169,12 +169,16 @@ class CarbonPopGame {
   showSuccessMessage() {
     const randomIndex = this.getRandomIndex(this.successMessagesPending.length);
     const successMessageEl = this.successMessagesPending.splice(randomIndex, 1)[0];
-    successMessageEl.classList.add(SUCCESS_MESSAGE_SHOW_CLASS);
+    window.gsap.to(successMessageEl, {
+      display: 'flex',
+      opacity: 1,
+      duration: 0.5,
+      ease: 'power2.out',
+      yoyo: true,
+      repeat: 1,
+      repeatDelay: SUCCESS_MESSAGE_TIMEOUT_MS / 1000,
+    });
     this.successMessagesShown.push(successMessageEl);
-
-    setTimeout(() => {
-      successMessageEl.classList.remove(SUCCESS_MESSAGE_SHOW_CLASS);
-    }, SUCCESS_MESSAGE_TIMEOUT_MS);
   }
 
   updateCSSVars() {

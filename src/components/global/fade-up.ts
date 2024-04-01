@@ -57,6 +57,8 @@ function fadeUpAnimation(
       trigger: parentEl || el,
       start: 'top 90%',
       toggleActions: 'play none none none',
+      markers: window.IS_DEBUG_MODE,
+      id: 'fade-up',
     },
   });
 }
