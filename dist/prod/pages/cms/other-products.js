@@ -1,0 +1,1 @@
+"use strict";(()=>{var e="scriptsLoaded";window.addEventListener(e,()=>{o()});function o(){Array.from(document.querySelectorAll("a")).filter(t=>{let n=t.getAttribute("href"),r=new URL(n,window.location.origin);return n&&r.origin!==window.location.origin}).forEach(t=>{t.setAttribute("target","_blank")})}})();
