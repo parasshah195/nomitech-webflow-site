@@ -1,7 +1,7 @@
 window.fsAttributes = window.fsAttributes || [];
 window.fsAttributes.push([
   'cmsfilter',
-  () => {
+  (filterInstances) => {
     const filtersButtonEl = document.querySelector('.filter_button.is-filters');
     const FILTERS_CONTROL_WRAPPER_SELECTOR = '.blog_filters-modal-controls';
 
@@ -13,6 +13,11 @@ window.fsAttributes.push([
 
       // close the dropdown
       filtersButtonEl.dispatchEvent(new Event('w-close'));
+    });
+
+    const [filterInstance] = filterInstances;
+    filterInstance.listInstance.on('renderitems', (renderedItems) => {
+      window.ScrollTrigger.refresh();
     });
   },
 ]);
