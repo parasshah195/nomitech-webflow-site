@@ -3,16 +3,16 @@ import { SCRIPTS_LOADED_EVENT } from 'src/constants';
 
 const navComponentEl = document.querySelector(COMPONENT_SELECTOR);
 
+if (window.innerWidth < 768) {
+  switchNavTheme('light');
+}
+
 window.addEventListener(SCRIPTS_LOADED_EVENT, () => {
   updateResponsiveNav();
   aboutGlobeParallaxOnScroll();
 });
 
 function updateResponsiveNav() {
-  if (window.innerWidth < 768) {
-    switchNavTheme('light');
-  }
-
   const mediaQueryList = window.matchMedia('(min-width: 768px)');
   mediaQueryList.addEventListener('change', (e) => {
     if (e.matches) {
