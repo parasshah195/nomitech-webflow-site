@@ -89,11 +89,13 @@ class CarbonPopGame {
       return;
     }
 
-    this.allMolecules.forEach((molecule) => {
-      molecule.addEventListener('click', this.onMoleculePop.bind(this));
-    });
+    if (window.innerWidth > MOBILE_LANDSCAPE_START_BREAKPOINT) {
+      this.allMolecules.forEach((molecule) => {
+        molecule.addEventListener('click', this.onMoleculePop.bind(this));
+      });
 
-    this.resetButtonEl.addEventListener('click', this.onResetButtonClick.bind(this));
+      this.resetButtonEl.addEventListener('click', this.onResetButtonClick.bind(this));
+    }
   }
 
   initGame() {
